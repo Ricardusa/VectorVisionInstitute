@@ -13,16 +13,4 @@ import java.util.List;
 @Repository
 public interface HolidaysRepository  extends CrudRepository<Holiday, String> {
 
-    /*private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public HolidaysRepository(JdbcTemplate jdbcTemplate){
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public List<Holiday> findHolidays(){
-        String sql = "SELECT * FROM holidays";
-        var rowMapper = BeanPropertyRowMapper.newInstance(Holiday.class);
-        return jdbcTemplate.query(sql, rowMapper);
-    }*/
 }

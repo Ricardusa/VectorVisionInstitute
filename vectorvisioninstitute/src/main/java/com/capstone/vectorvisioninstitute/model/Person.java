@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
 @Entity
@@ -58,6 +59,48 @@ public class Person extends BaseEntity{
     @Transient //no database related operations like save
     private String confirmPwd;
 
+    /*since whenever we do an operation(other than Persist) to the person we don't
+    want that same operation to be done to the roles as well, since
+    we want to keep roles unchanged, CascadeType.PERSIST is used*/
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, targetEntity = Roles.class)
+    @JoinColumn(name ="role_id", referencedColumnName = "roleId", nullable = false)
+    private Roles roles;
+
+    /** Our Person Pojo class is the parent and the Address class is the child
+     *      in our case we are establishing a 1 to 1 relationship since
+     *      One person can only have one address and vise versa.
+     *      And since the foreign key relationship between the person
+     *      and the Address tables is an optional, or it is a nullable = true
+     */
+    /* @OneToOne
+     * EAGER = when we fetch the person record tables, spring data JPA will
+     *   automatically fetch the child table records.
+     * LAZY = when we fetch the person record tables, spring data JPA will
+     *   not fetch the child table records automatically. it will only load the person related records.
+     * CascadeType.ALL = if we are doing Insert, Update or Delete operations on the parent
+     *   the same operations we want spring data JPA to do to the child entity class.
+     * 1. First we must establish a FetchType so do we want to fetch the child
+     *    entities either eagerly or lazily
+     * 2. Next alongside with our fetch configurations we must also make cascade
+     *    configurations.
+     * 3. Alongside with our CascadeType configurations we mention the optional
+     *    targetEntity which indirectly tells to spring data JPA that the targetEntity
+     *    is of Address table (done for readability purposes).
+     *
+     * @JoinColumn
+     * Without JoinColumn annotation our Spring Data JPA would be clueless to which
+     *   column of person entity has a 1to1 relationship with which column Address entity.
+     * 1. First we need to tell what is the column name that is present
+     *    inside the person table which is address_id.
+     * 2. Using referencedColumnName we have to communicate to spring data JPA which field
+     *    inside the Address entity pojo class that this address_id column is present inside
+     *    Person has a link to or a 1to1 relationship with that name is addressId.
+     * 3. Last we mention whether this relationship is nullable or not, And since
+     *    the Person and Address relationship that we have right now inside the tables is nullable.
+     */
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Address.class)
+    @JoinColumn(name ="address_id", referencedColumnName = "addressId", nullable = true)
+    private Address address;
 
 
 }

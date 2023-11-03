@@ -1,6 +1,7 @@
 package com.capstone.vectorvisioninstitute.controller;
 
 import com.capstone.vectorvisioninstitute.model.Person;
+import com.capstone.vectorvisioninstitute.service.PersonService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("public") // /public/register
 public class PublicController {
 
-   // @Autowired
-    //PersonService personService;
+   @Autowired
+   PersonService personService;
 
     @RequestMapping(value = "/register", method = { RequestMethod.GET})
     public String displayRegisterPage(Model model){
@@ -30,6 +31,11 @@ public class PublicController {
         if(errors.hasErrors()){
             return "register.html";
         }
-        return "redirect:/login?register=true";
+        boolean isSaved = personService.createNewPerson(person);
+        if(isSaved){ //if data is saved
+            return "redirect:/login?register=true";
+        }else {
+            return "register.html";
+        }
     }
 }

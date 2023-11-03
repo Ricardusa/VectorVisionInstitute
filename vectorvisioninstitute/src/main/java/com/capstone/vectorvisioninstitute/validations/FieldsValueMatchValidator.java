@@ -26,10 +26,23 @@ public class FieldsValueMatchValidator implements
         Object fieldMatchValue = new BeanWrapperImpl(value).getPropertyValue(fieldMatch);
 
         if(fieldValue != null){
-            return fieldValue.equals(fieldMatchValue);
+            if(fieldValue.toString().startsWith("$2a")){
+                return true; //ensure encrypted password passes field check
+            }else {
+                //do normal validation checking if not encrypted pwd
+                return fieldValue.equals(fieldMatchValue);
+            }
         }else {
             return fieldMatchValue == null;
         }
+        /*right now with bCrypt we encrypt our password
+        but when we try to do comparisons it tells us that
+        our passwords do not match because we have now done a encrypt to the password
+        if(fieldValue != null){
+            return fieldValue.equals(fieldMatchValue);
+        }else {
+            return fieldMatchValue == null;
+        }*/
     }
 
 }

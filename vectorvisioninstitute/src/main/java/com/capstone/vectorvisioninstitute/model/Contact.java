@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Data
 @Entity

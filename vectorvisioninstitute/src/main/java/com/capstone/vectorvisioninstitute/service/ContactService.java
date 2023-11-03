@@ -38,10 +38,6 @@ public class ContactService {
     public boolean saveMessageDetails(Contact contact){
         boolean isSaved = false;
         contact.setStatus(VectorVisionConstants.OPEN);
-        /* manually populating createdBy and createdAt()
-         * now since we have auditing class we don't need them anymore
-        contact.setCreatedBy(VectorVisionConstants.ANONYMOUS);
-        contact.setCreatedAt(LocalDateTime.now());*/
 
         Contact savedContact = contactRepository.save(contact);
         /*if getContactId > 0 indicates that successful processing of the data
@@ -52,14 +48,12 @@ public class ContactService {
         return isSaved;
     }
 
-    //Derived Query Method in Repo
     public List<Contact> findMsgsWithOpenStatus(){
         //spring data JPA will insert some implementation at runtime
         List<Contact> contactMsgs = contactRepository.findByStatus(VectorVisionConstants.OPEN);
         return contactMsgs;
     }
 
-    //old ver: public boolean updateMsgStatus(int contactId, String updatedBy)
     public boolean updateMsgStatus(int contactId){
         boolean isUpdated = false;
         /*Optional since sometimes the primary key value may not exist
@@ -68,9 +62,6 @@ public class ContactService {
         //.ifPresent checks if contact = null or != null
         contact.ifPresent(contact1 -> {
             contact1.setStatus(VectorVisionConstants.CLOSE); //set status to close
-            /* Manually updating updatedBy() & updatedAt()
-            contact1.setUpdatedBy(updatedBy);
-            contact1.setUpdatedAt(LocalDateTime.now());*/
         });
         //call.get() gets the actual object since Optional was used above
         Contact updatedContact = contactRepository.save(contact.get()); //update operation

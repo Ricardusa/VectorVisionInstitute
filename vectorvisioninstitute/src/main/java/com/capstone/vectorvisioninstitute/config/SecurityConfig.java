@@ -41,39 +41,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager(){
-        /*UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("12345")
-                .roles("USER")
-                .build();
-        UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("54321")
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user, admin);*/
-
-        /*String encodedAdminPassword = new BCryptPasswordEncoder().encode("12345");
-        String encodedUserPassword = new BCryptPasswordEncoder().encode("54321");*/
-
-        UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("12345"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("54321"))
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user, admin);
-
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 

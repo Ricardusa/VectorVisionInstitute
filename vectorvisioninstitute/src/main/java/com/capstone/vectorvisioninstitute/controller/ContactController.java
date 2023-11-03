@@ -60,11 +60,4 @@ public class ContactController {
         contactService.updateMsgStatus(id);
         return "redirect:/displayMessages";
     }
-
-
-
-    /* old version:
-    public String closeMsg(@RequestParam int id, Authentication authentication){
-        contactService.updateMsgStatus(id, authentication.getName());
-     */
 }
