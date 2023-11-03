@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vector Vision Institute</title>
+  <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Your custom CSS file -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- Bootstrap JS (optional, add if needed) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+  <link rel="manifest" href="/assets/img/site.webmanifest">
+  <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+<!-- HEADER SECTION -->
+<div th:replace="~{header :: header}"></div>
+
+
+<!-- BANNER -->
+<section class="banner">
+  <div class="banner-text">
+    <h1 class="custom-font">Vector Vision Institute</h1>
+    <p>Your path to a brighter future starts here.</p>
+  </div>
+  <img src="/assets/img/banr1.png" alt="Banner Image" class="banner-image">
+</section>
+
+<!-- COURSES SECTION -->
+<section id="courses" class="text-center" style="margin-bottom: 40px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="custom-font">Empowering Education for ALL</h2>
+        <p>Explore courses designed to empower individuals of all ages and backgrounds, fostering a supportive learning community at Vector Vision Institute.</p>
+        <a th:href="@{/courses}" class="btn btn-primary mb-4 btn-primary-custom">View All Courses</a>
+      </div>
+      <div class="col-md-6">
+        <img src="/assets/img/coursesImg.png" alt="Courses Image"   class="card-img-top img-fluid rounded-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US SECTION -->
+<section id="why-choose-us" class="text-center" style="margin-bottom: 20px; position: relative;">
+  <div class="container">
+    <h2 class="custom-font">Why Choose Us</h2>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="choose-us-item position-relative">
+          <img src="/assets/img/teachImage.png" alt="Expert Teachers" class="img-fluid rounded-image blur-image">
+          <div class="choose-us-text position-absolute top-50 start-50 translate-middle text-light">
+            <h3>Expert Teachers</h3>
+            <p>We have a team of dedicated and experienced teachers who are experts in their fields. Our commitment is to provide high-quality education and guidance to our students.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="choose-us-item position-relative">
+          <img src="/assets/img/safeEnvironment.png" alt="Safe Environment" class="img-fluid rounded-image blur-image">
+          <div class="choose-us-text position-absolute top-50 start-50 translate-middle text-light">
+            <h3>Safe Environment</h3>
+            <p>Ensuring the safety and well-being of our students is our top priority. Our school provides a secure and nurturing environment where students can focus on learning and personal growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a th:href="@{/about}" class="btn btn-primary mt-4 btn-primary-custom">More Information</a>
+  </div>
+</section>
+
+<!-- APPLY NOW SECTION -->
+<section id="apply-now" class="text-center my-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="/assets/img/applyNow.png" alt="Apply Now" class="img-fluid rounded-image mb-3">
+      </div>
+      <div class="col-md-6">
+        <div class="apply-now-box">
+          <h2 class="custom-font">Get an Appointment Today</h2>
+          <p>Call us now to schedule your appointment!</p>
+          <div class="contact-info">
+            <span><i class="fas fa-phone"></i> +1(23) 456 789 0000</span>
+          </div>
+          <a th:href="@{/contact}" class="btn btn-primary btn-primary-custom mt-3">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER SECTION -->
+<div th:replace="~{footer :: footer}"></div>
+</body>
+
+
+</html>

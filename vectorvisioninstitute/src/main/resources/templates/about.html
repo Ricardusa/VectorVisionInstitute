@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VVI - About</title>
+    <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Your custom CSS file -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Bootstrap JS (optional, add if needed) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body>
+<!-- HEADER SECTION -->
+<div th:replace="~{header :: header}"></div>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="text-center">
+    <div class="container">
+        <h2 class="custom-font mb-5">About Us</h2>
+
+        <div>
+            <h2>Our Team</h2>
+        </div>
+        <!-- Meet Our Teachers Section -->
+        <div class="mb-5">
+            <h3 class="custom-font font-weight-bold mb-5">Meet Our Teachers</h3>
+            <!-- Placeholder for teachers -->
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="/assets/img/teacher1.png" alt="Teacher 1" class="img-fluid rounded-circle">
+                    <h4 class="font-weight-bold custom-font mb-3 mt-3">Ethan Miller</h4>
+                    <p class="font-weight-bold">Full Stack Developer</p>
+                    <p class="mb-5">Ethan Miller brings a wealth of experience in full stack development. He is dedicated to guiding students through the intricacies of web development.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="/assets/img/teacher5.png" alt="Teacher 5" class="img-fluid rounded-circle">
+                    <h4 class="font-weight-bold custom-font mb-3 mt-3">Jordan Carter</h4>
+                    <p class="font-weight-bold">Full Stack Developer</p>
+                    <p class="mb-5">Jordan, working alongside Ethan Miller, contributes to our Full Stack Developer course. Bringing practical knowledge and collaborative teaching,
+                        Jordan enhances the learning experience by assisting students in navigating the intricacies of web development.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="/assets/img/teacher2.png" alt="Teacher 2" class="img-fluid rounded-circle">
+                    <h4 class="font-weight-bold custom-font mb-3 mt-3">Adrian Johnson</h4>
+                    <p class="font-weight-bold">Cybersecurity Expert</p>
+                    <p class="mb-5">Adrian Johnson, our cybersecurity expert, is committed to educating students on the latest security practices and technologies in the digital landscape.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="/assets/img/teacher6.png" alt="Teacher 6" class="img-fluid rounded-circle">
+                    <h4 class="font-weight-bold custom-font mb-3 mt-3">Alex Mansoor</h4>
+                    <p class="font-weight-bold">Cybersecurity Expert</p>
+                    <p class="mb-5">Supporting Adrian Johnson in our Cybersecurity course, Alex is a cybersecurity specialist dedicated to ensuring a secure digital environment.
+                        With expertise in threat analysis and secure coding, Alex enriches the learning journey by providing valuable insights into cybersecurity trends.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="/assets/img/teacher3.png" alt="Teacher 3" class="img-fluid rounded-circle">
+                    <h4 class="font-weight-bold custom-font mb-3 mt-3">Alejandro Rodriguez</h4>
+                    <p class="font-weight-bold">Data Science Instructor</p>
+                    <p class="mb-5">Alejandro Rodriguez, our data science instructor, brings a deep understanding of data analytics and machine learning to the classroom.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="/assets/img/teacher4.png" alt="Teacher 4" class="img-fluid rounded-circle">
+                    <h4 class="font-weight-bold custom-font mb-3 mt-3">Olivia Davis</h4>
+                    <p class="font-weight-bold">Game Developer Mentor</p>
+                    <p class="mb-5">Olivia Davis, our game developer mentor, inspires students with her passion for game development and creativity in the gaming industry.</p>
+                </div>
+                <!-- Add more teachers as needed -->
+            </div>
+        </div>
+
+        <!-- Our Environment Section -->
+        <div class="mb-5">
+            <h2 class="custom-font mb-5">Our Environment</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="/assets/img/environment.png" class="img-fluid rounded-image mb-3" alt="Our Environment Image">
+                </div>
+                <div class="col-md-6">
+                    <p>At Vector Vision Institute, we embrace a dynamic and flexible learning environment that combines the best of both worlds—online and in-person
+                        classes. Our hybrid approach provides students with the convenience of virtual learning while maintaining the benefits of face-to-face interaction. Whether you choose to attend classes from the comfort of your home or join us on campus, you'll experience a supportive and engaging atmosphere.
+                        Our commitment to innovative education ensures that every student, regardless of their preferred mode of learning, receives a high-quality and personalized educational experience.
+                        Join us in redefining the future of education in a space that adapts to your needs and ambitions.</p>
+                </div>
+            </div>
+        </div>
+        <!--History Section-->
+        <div id="history" class="mb-5">
+            <h2 class="custom-font mb-5">Our History</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="/assets/img/history.png" class="img-fluid rounded-image mb-3" alt="Our History Image">
+                </div>
+                <div class="col-md-6">
+                    <p>Our journey at Vector Vision Institute began with a mission to bridge the gap and make technology education accessible to individuals
+                        from diverse backgrounds. From our humble beginnings, we aspired to create an inclusive learning
+                        environment that welcomes students of all ages, ethnicities, and experiences. Over the years,
+                        we have been dedicated to breaking down barriers and fostering a community where everyone can thrive in the field of technology.
+                        Our commitment to diversity and inclusion has shaped our curriculum, teaching methods, and the very essence of our institute.
+                        Join us in celebrating a history built on the belief that technology education should be a transformative force,
+                        empowering individuals from all walks of life to pursue and succeed in the ever-evolving tech industry.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- FOOTER SECTION -->
+    <div th:replace="~{footer :: footer}"></div>
+ </body>
+</html>

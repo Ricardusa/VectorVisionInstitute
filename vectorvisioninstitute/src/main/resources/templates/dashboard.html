@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${'Welcome - ' + username}">Welcome - User</title>
+  <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Your custom CSS file -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- Bootstrap JS (optional, add if needed) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src ="/assets/js/all.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+  <link rel="manifest" href="/assets/img/site.webmanifest">
+  <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    .card-title {
+      text-shadow: -1px -1px 11px rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</head>
+
+<body>
+<!-- HEADER SECTION -->
+<div th:replace="~{header :: header}"></div>
+
+<!-- DASHBOARD BLOCK
+<section class="w3l-contact py-5" id="contact">
+  <div class="container py-md-5 py-4">
+    <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+      <h3 class="title-style" th:text="${'Welcome - ' + username}"></h3>
+      <p class="" th:text="${'You logged in as - ' + roles}"></p>
+    </div>
+  </div>
+</section>
+ //DASHBOARD BLOCK -->
+
+<!-- WELCOME BLOCK -->
+<section class="w3l-contact py-1" id="contact">
+  <div class="container py-md-1 py-1">
+    <div class="title-main text-center mx-auto mb-md-1 mb-1" style="max-width:500px;">
+      <h3 class="title-style" th:text="${'Welcome - ' + username}"></h3>
+      <p class="" th:text="${'You logged in as - ' + roles}"></p>
+    </div>
+  </div>
+</section>
+<!-- //WELCOME BLOCK -->
+
+<!-- OVERVIEW SECTION -->
+<div class="container py-md-5 py-4">
+  <div class="section__content section__content--p30">
+    <div class="container-fluid">
+      <div class="row m-t-25">
+        <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_ADMIN')">
+          <a th:href="@{/displayMessages}" class="text-decoration-none">
+            <div class="card custom-box text-white">
+              <div class="card-body">
+                <h2 class="card-title text-center custom-font" >Messages</h2>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //OVERVIEW SECTION -->
+
+
+<!-- FOOTER SECTION -->
+<div th:replace="~{footer :: footer}"></div>
+</body>
+
+</html>

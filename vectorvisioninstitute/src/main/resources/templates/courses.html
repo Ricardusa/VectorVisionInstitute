@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VVI - Courses</title>
+    <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Your custom CSS file -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Bootstrap JS (optional, add if needed) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+<!-- HEADER SECTION -->
+<div th:replace="~{header :: header}"></div>
+
+<!-- COURSES SECTION -->
+<section id="courses" class="text-center">
+    <div class="container">
+        <h2 class="custom-font">All Courses</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/assets/img/javaCourse.png" class="card-img-top" alt="Course 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Full Stack Developer</h5>
+                        <p class="card-text">Master both front-end and back-end technologies to become a versatile problem-solver in our Full Stack Developer course.</p>
+                        <!-- Add more details about the course or a "Enroll Now" button if needed -->
+                    </div>
+                </div>
+            </div>
+            <!-- Course 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/assets/img/cyberCourse.png" class="card-img-top" alt="Course 2">
+                    <div class="card-body">
+                        <h5 class="card-title">CyberSecurity</h5>
+                        <p class="card-text">Learn essential cybersecurity skills. Defend against threats, conduct security assessments, and master ethical hacking. Become a cybersecurity expert.</p>
+                        <!-- Add more details about the course or a "Enroll Now" button if needed -->
+                    </div>
+                </div>
+            </div>
+            <!-- Course 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/assets/img/dataScience.png" class="card-img-top" alt="Course 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Science & Analytics</h5>
+                        <p class="card-text">Unlock the power of data analytics and machine learning in our Data Science program.</p>
+                        <!-- Add more details about the course or a "Enroll Now" button if needed -->
+                    </div>
+                </div>
+            </div>
+            <!-- Course 4 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/assets/img/gameDevelopment.png" class="card-img-top" alt="Course 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Game Development</h5>
+                        <p class="card-text">Create immersive worlds and interactive experiences in our Game Development program.</p>
+                        <!-- Add more details about the course or a "Enroll Now" button if needed -->
+                    </div>
+                </div>
+            </div>
+            <!-- Add more course cards as needed -->
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER SECTION -->
+<div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

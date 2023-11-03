@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VVI - ERROR</title>
+    <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Your custom CSS file -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Bootstrap JS (optional, add if needed) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+<!-- HEADER SECTION -->
+<div th:replace="~{header :: header}"></div>
+
+<!-- ERROR BLOCK -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <div class="col-sm-10 mx-auto text-center">
+                    <div>
+                        <h1 class="display-4">Oops...</h1>
+                    </div>
+                    <div>
+                        <h3 class="h2">
+                            Looks like you're lost
+                        </h3>
+                        <p th:text="${'Error Message - ' + errormsg}"></p>
+                        <a th:href="@{/home}" class="btn btn-primary btn-style btn-style-3 btn-primary-custom">Go to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //ERROR BLOCK -->
+
+<!-- FOOTER SECTION -->
+<div th:replace="~{footer :: footer}"></div>
+</body>
+
+</html>

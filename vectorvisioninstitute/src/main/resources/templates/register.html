@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VVI - Registration Form</title>
+    <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Your custom CSS file -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Bootstrap JS (optional, add if needed) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+<!-- HEADER SECTION -->
+<div th:replace="~{header :: header}"></div>
+
+<!-- REGISTRATION SECTION -->
+<section class="w3l-contact py-5" id="contact">
+    <div class="container py-md-5 py-4">
+        <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+            <h3 class="title-style">Registration Form</h3>
+        </div>
+        <div class="row login-block">
+            <div class="col-md-7 login-center">
+                <ul>
+                    <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('person.*')}" th:text="${error}" />
+                </ul>
+                <!-- Form th:action="@{/public/createUser}"-->
+                <form th:action="@{/public/createUser}" method="post" class="signin-form" th:object="${person}">
+                    <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+                        <p class="text-uppercase">Personal Details</p>
+                    </div>
+                    <div class="input-grids">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" th:field="*{name}" placeholder="Name" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" th:field="*{mobileNumber}" placeholder="Mobile Number" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" th:field="*{email}" placeholder="Email" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" th:field="*{confirmEmail}" placeholder="Confirm Email" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="password" th:field="*{pwd}" placeholder="Password" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="password" th:field="*{confirmPwd}" placeholder="Confirm Password" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 login-center text-start">
+                        <button type="submit" class="btn btn-primary btn-style-3">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER SECTION -->
+<div th:replace="~{footer :: footer}"></div>
+</body>
+</html>
