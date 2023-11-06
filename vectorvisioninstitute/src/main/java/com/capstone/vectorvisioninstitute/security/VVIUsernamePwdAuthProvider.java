@@ -39,7 +39,7 @@ public class VVIUsernamePwdAuthProvider implements AuthenticationProvider {
             //spring will generate new auth token while also erasing the password credentials
             return new UsernamePasswordAuthenticationToken(
                     //.getName() displays users Name //credentials = null to not add the password details
-                    person.getName(), null, fetchUserAuthorities(person.getRoles()));
+                    email, null, fetchUserAuthorities(person.getRoles()));
         }else{
             throw new BadCredentialsException("Invalid Credentials!");
         }

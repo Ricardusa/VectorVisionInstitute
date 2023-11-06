@@ -60,7 +60,19 @@
   <div class="section__content section__content--p30">
     <div class="container-fluid">
       <div class="row m-t-25">
-        <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_ADMIN')">
+        <!-- USER SPECIFIC BLOCK -->
+        <div class="col-sm-6 col-lg-3 mb-4">
+          <a th:href="@{/displayProfile}" class="text-decoration-none">
+            <div class="card custom-box text-white">
+              <div class="card-body">
+                  <h2 class="card-title text-center custom-font">Profile</h2>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- //USER SPECIFIC BLOCK -->
+        <!-- ADMIN SPECIFIC BLOCK -->
+        <div class="col-sm-6 col-lg-3 mb-4" sec:authorize="hasRole('ROLE_ADMIN')">
           <a th:href="@{/displayMessages}" class="text-decoration-none">
             <div class="card custom-box text-white">
               <div class="card-body">
@@ -69,6 +81,29 @@
             </div>
           </a>
         </div>
+        <!-- //ADMIN SPECIFIC BLOCK -->
+        <!-- ADMIN SPECIFIC BLOCK - CLASSES -->
+        <div class="col-sm-6 col-lg-3 mb-4" sec:authorize="hasRole('ROLE_ADMIN')">
+          <a th:href="@{/admin/displayClasses}" class="text-decoration-none">
+            <div class="card custom-box text-white">
+              <div class="card-body">
+                <h2 class="card-title text-center custom-font" >Classes</h2>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- //ADMIN SPECIFIC BLOCK - CLASSES -->
+        <!-- ADMIN SPECIFIC BLOCK - COURSES -->
+        <div class="col-sm-6 col-lg-3 " sec:authorize="hasRole('ROLE_ADMIN')">
+          <a th:href="@{/admin/displayCourses}" class="text-decoration-none">
+            <div class="card custom-box text-white">
+              <div class="card-body">
+                <h2 class="card-title text-center custom-font" >Courses</h2>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- //ADMIN SPECIFIC BLOCK - COURSES -->
       </div>
     </div>
   </div>

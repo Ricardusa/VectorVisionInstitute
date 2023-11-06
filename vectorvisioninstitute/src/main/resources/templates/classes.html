@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VVI - Contact Us</title>
+    <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Bootstrap JS (optional, add if needed) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+<!-- HEADER SECTION -->
+<div th:replace="~{header :: header}"></div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h3 class="mb-4">Vector Vision Class Details</h3>
+                <button class="btn btn-info" type="button" data-toggle="modal" data-target="#createClass">ADD CLASS</button>
+            </div>
+        </div>
+
+        <div class="modal fade" id="createClass" tabindex="-1" role="dialog" aria-labelledby="createClassModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="createClassLabel">Create New Class</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form th:action="@{/admin/addNewClass}" method="post" class="signin-form" th:object="${classDetails}">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="className">Class Name</label>
+                                <input type="text" class="form-control" name="className" id="className" th:field="*{name}" required placeholder="Enter class name">
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-style btn-info">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Class ID</th>
+                <th scope="col">Class Name</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="classDetails: ${cDetails}">
+                <td th:text="${classDetails.classId}"></td>
+                <td th:text="${classDetails.name}"></td>
+                <td><a th:href="@{/admin/displayStudents(classId=${classDetails.classId})}" class="btn btn-success">VIEW</a></td>
+                <td><a th:href="@{/admin/deleteClass(id=${classDetails.classId})}" class="btn btn-warning">DELETE</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-2 mx-auto text-start">
+        <a th:href="@{/dashboard}">
+            <button class="btn btn-info">BACK</button>
+        </a>
+    </div>
+</div>
+
+<!-- FOOTER SECTION -->
+<div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

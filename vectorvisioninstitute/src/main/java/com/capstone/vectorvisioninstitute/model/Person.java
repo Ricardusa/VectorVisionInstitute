@@ -102,5 +102,20 @@ public class Person extends BaseEntity{
     @JoinColumn(name ="address_id", referencedColumnName = "addressId", nullable = true)
     private Address address;
 
+    /**
+     * Represents a many-to-one relationship between Person and Class entities.
+     * We use FetchType.LAZY to optimize performance, especially in scenarios where a large number
+     * of persons are registered, preventing the unnecessary loading of class details.
+     * Setting Optional to true acknowledges that the foreign key relationship is nullable.
+     * In our context, during user registration, a person may not be associated with any class by default,
+     * and the class assignment typically occurs later through administrative actions in the web application.
+     * No cascade configurations are specified since there's no use case for saving class information
+     * with the help of a Person entity. Class records are created separately by administrators,
+     * and persons are added to existing classes afterward.
+     */
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "class_id", referencedColumnName = "classId", nullable = true)
+    private ClassDetails classDetails;
+
 
 }

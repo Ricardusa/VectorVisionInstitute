@@ -26,6 +26,15 @@ public class FieldsValueMatchValidator implements
         Object fieldMatchValue = new BeanWrapperImpl(value).getPropertyValue(fieldMatch);
 
         if(fieldValue != null){
+            return fieldValue.equals(fieldMatchValue);
+        }else {
+            return fieldMatchValue == null;
+        }
+
+        /*with this approach our validations are being executed twice
+        //to fix this we can configure some properties in app.properties file
+        //removing this double validation provides for better performance for our application
+        if(fieldValue != null){
             if(fieldValue.toString().startsWith("$2a")){
                 return true; //ensure encrypted password passes field check
             }else {
@@ -34,15 +43,6 @@ public class FieldsValueMatchValidator implements
             }
         }else {
             return fieldMatchValue == null;
-        }
-        /*right now with bCrypt we encrypt our password
-        but when we try to do comparisons it tells us that
-        our passwords do not match because we have now done a encrypt to the password
-        if(fieldValue != null){
-            return fieldValue.equals(fieldMatchValue);
-        }else {
-            return fieldMatchValue == null;
         }*/
     }
-
 }
