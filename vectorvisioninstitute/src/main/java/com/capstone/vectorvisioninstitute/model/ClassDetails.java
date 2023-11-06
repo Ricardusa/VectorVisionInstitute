@@ -4,11 +4,15 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
 
-@Data
+//no @Data since we don't want a toString() generated
+@Getter
+@Setter
 @Entity
 @Table(name = "class")
 public class ClassDetails extends BaseEntity{

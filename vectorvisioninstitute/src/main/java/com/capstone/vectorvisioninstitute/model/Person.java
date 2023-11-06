@@ -8,10 +8,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Data
+@Getter
+@Setter
 @Entity
 @FieldsValueMatch.List({ //perform comparison between fields from FieldsValueMatch class
         @FieldsValueMatch(

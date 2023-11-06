@@ -14,7 +14,6 @@ import java.time.Instant;
 
 //logger statements whenever we invoke an operation on the backend.
 //this way we can see how much time each action takes to see if there are any performance issues
-//old name: LoggerAspect
 @Slf4j
 @Aspect
 @Component

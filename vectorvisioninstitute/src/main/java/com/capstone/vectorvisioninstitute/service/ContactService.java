@@ -11,14 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-/*
- @RequestScope will reset the counter to zero everytime a user submits the form,
- it will create a new bean for each and every HTTP request that is coming from the end user.
- example: If there are 100 users trying to access your web application at the same time, and if they are submitting
- 100 different contact message details with 100 different HTTP requests, then definitely they will get
- 100 different ContactService beans inside your web application.
- */
-
 //@Slf4j
 @Service
 //@RequestScope

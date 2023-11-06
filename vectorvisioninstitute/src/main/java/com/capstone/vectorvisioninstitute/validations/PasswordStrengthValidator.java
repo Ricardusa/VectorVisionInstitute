@@ -7,7 +7,6 @@ import jakarta.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 import java.util.List;
 
-//TODO: video 157
 public class PasswordStrengthValidator implements ConstraintValidator<PasswordValidator, String> {
 
     List<String> weakPasswords;
