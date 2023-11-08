@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("com.capstone.vectorvisioninstitute.repository")
 @EntityScan("com.capstone.vectorvisioninstitute.model")
 //Enable Auditing
+//TODO: IMPORTANT WHEN TESTING COMMENT OUT THIS LINE OF CODE!
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 public class VectorvisioninstituteApplication {
 

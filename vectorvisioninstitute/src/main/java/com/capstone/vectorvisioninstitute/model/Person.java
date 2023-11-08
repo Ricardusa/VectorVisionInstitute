@@ -13,6 +13,9 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -119,6 +122,28 @@ public class Person extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "class_id", referencedColumnName = "classId", nullable = true)
     private ClassDetails classDetails;
+
+
+    /**
+     * Set<Courses> courses = new HashSet<>() >> courses field is also of type collection since a person can enroll
+     * into multiple courses.
+     * @JoinTable >> we use jointable since we are going to have an intermediate table inside our ManyToMany relationship,
+     * we need to tell the details of the intermediate table to my spring JPA framework with the help of the @JoinTable annotation.
+     * First we need to tell what is the name of the intermediate table name, which is person_courses.
+     * joinColumns >> we need to configure two configurations first we have joinColumns which we are going to configure
+     * that the columns belong to this entity which Person. so what is the column name in the DataBase which is
+     * "person_id" and for the referenceColumnName we have to make sure we match the field name with the field name
+     * that we have in the Person Entity class which is "personId".
+     * inverseJoinColumns >> here we need to provide the details about the other entity class which is Courses.
+     * we do the same name = "course_id", referencedColumnName = "courseId".
+     */
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "person_courses", // spring is smart enough to make this personCourses entity class itself which belong to the person_courses
+            joinColumns = {
+                @JoinColumn(name = "person_id", referencedColumnName = "personId")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "course_id", referencedColumnName = "courseId")})
+    private Set<Courses> courses = new HashSet<>();
 
 
 }

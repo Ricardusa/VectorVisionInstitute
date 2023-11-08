@@ -31,18 +31,5 @@ public class FieldsValueMatchValidator implements
             return fieldMatchValue == null;
         }
 
-        /*with this approach our validations are being executed twice
-        //to fix this we can configure some properties in app.properties file
-        //removing this double validation provides for better performance for our application
-        if(fieldValue != null){
-            if(fieldValue.toString().startsWith("$2a")){
-                return true; //ensure encrypted password passes field check
-            }else {
-                //do normal validation checking if not encrypted pwd
-                return fieldValue.equals(fieldMatchValue);
-            }
-        }else {
-            return fieldMatchValue == null;
-        }*/
     }
 }

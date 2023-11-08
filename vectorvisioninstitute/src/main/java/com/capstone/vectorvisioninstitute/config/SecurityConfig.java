@@ -16,7 +16,7 @@ public class SecurityConfig {
     /*
     /closeMsg/** -> ({id=$msg.contactId})
      */
-    @Bean
+    /*@Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> csrf.ignoringRequestMatchers("/saveMsg").ignoringRequestMatchers("/public/**"))
                 .authorizeHttpRequests((requests) -> requests.requestMatchers("/dashboard").authenticated()
@@ -25,6 +25,7 @@ public class SecurityConfig {
                         .requestMatchers("/closeMsg/**").hasRole("ADMIN")
                         .requestMatchers("/displayProfile").authenticated()
                         .requestMatchers("/updateProfile").authenticated()
+                        .requestMatchers("/student/**").hasRole("STUDENT")
                         .requestMatchers("", "/", "/home").permitAll()
                         .requestMatchers("/holidays/**").permitAll()
                         .requestMatchers("/contact").permitAll()
@@ -40,6 +41,59 @@ public class SecurityConfig {
                 .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")
                         .invalidateHttpSession(true).permitAll())
                 .httpBasic(Customizer.withDefaults());
+        return http.build();
+    }*/
+
+    @Bean
+    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests((auth) -> auth
+                        /* PUBLIC */
+                        .requestMatchers(
+                                "/public/**",
+                                "/home",
+                                "/holidays/**",
+                                "/contact",
+                                "/saveMsg",
+                                "/assets/**",
+                                "/courses",
+                                "/about",
+                                "/logout",
+                                "/login")
+                        .permitAll()
+
+                        /* LOGGED IN */
+                        .requestMatchers(
+                                "/dashboard",
+                                "/displayProfile",
+                                "/updateProfile")
+                        .authenticated()
+
+                        /* IS STUDENT */
+                        .requestMatchers(
+                                "/student/**")
+                        .hasRole("STUDENT")
+
+                        /* IS ADMIN */
+                        .requestMatchers(
+                                "/displayMessages",
+                                "/admin/**",
+                                "/closeMsg/**")
+                        .hasRole("ADMIN"))
+                .formLogin((login) -> login
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/dashboard")
+                        .failureUrl("/login?error=true")
+                        .permitAll())
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/login?logout=true")
+                        .invalidateHttpSession(true)
+                        .permitAll())
+                .csrf((csrf) -> csrf
+                        .ignoringRequestMatchers(
+                                "/public/**",
+                                "/saveMsg"));
+
         return http.build();
     }
 

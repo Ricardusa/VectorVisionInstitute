@@ -1,12 +1,15 @@
 package com.capstone.vectorvisioninstitute.controller;
 
 import com.capstone.vectorvisioninstitute.model.ClassDetails;
+import com.capstone.vectorvisioninstitute.model.Courses;
 import com.capstone.vectorvisioninstitute.model.Person;
 import com.capstone.vectorvisioninstitute.repository.ClassDetailsRepository;
+import com.capstone.vectorvisioninstitute.repository.CoursesRepository;
 import com.capstone.vectorvisioninstitute.repository.PersonRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +28,9 @@ public class AdminController {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    CoursesRepository coursesRepository;
 
     @RequestMapping("/displayClasses")
     public ModelAndView displayClasses(Model model){
@@ -176,5 +182,93 @@ public class AdminController {
         // Redirect to the "admin/displayStudents" view with the current classId after successful deletion
         ModelAndView modelAndView = new ModelAndView("redirect:/admin/displayStudents?classId="+classDetails.getClassId());
         return modelAndView;
+    }
+
+    @GetMapping("/displayCourses")
+    public ModelAndView displayCourses(Model model){
+        //List<Courses> courses = coursesRepository.findAll(Sort.by("name").descending());
+
+        //if any existing courses, fetch courses inside DB by using the method findAll()
+        List<Courses> courses = coursesRepository.findAll(); //findAll
+        //courses exist display new page courses_secure >> this page can only be explored by Admin
+        ModelAndView modelAndView = new ModelAndView("courses_secure.html");
+        //send all courses fetched from the DB inside an object of "courses"
+        //this would allow us to display all the courses inside the application on the front end
+        modelAndView.addObject("courses", courses);
+        //create new Courses object so that the entity can bring the courses information from
+        //the UI to the Backend Controller Layer.
+        modelAndView.addObject("course", new Courses());
+        return modelAndView;
+    }
+
+    /**
+    this method is going to handle the post mapping for a path
+    /addNewCourse
+    going to accept 2 method parameters, first one being Model and
+    second being Courses object in the form of ModelAttribute, same name should be
+    mentioned that we are using inside our courses_secure.html th:object=$"(course)"
+     */
+    @PostMapping("/addNewCourse")
+    public ModelAndView addNewCourse(Model model, @ModelAttribute("course") Courses courses){
+        ModelAndView modelAndView = new ModelAndView();
+        coursesRepository.save(courses); //save course to DB
+        //refresh page and new courses added will be displayed
+        modelAndView.setViewName("redirect:/admin/displayCourses");
+        return modelAndView;
+    }
+
+    @GetMapping("/viewStudents")
+    public ModelAndView viewStudents(Model model, @RequestParam int id,
+                                     HttpSession session, @RequestParam(required = false) String error){
+        ModelAndView modelAndView = new ModelAndView("course_students.html");
+        Optional<Courses> courses = coursesRepository.findById(id);
+        modelAndView.addObject("courses", courses.get());
+        modelAndView.addObject("person", new Person());
+        session.setAttribute("courses", courses.get()); //Optional
+        String errorMessage = null;
+        if(error != null){
+            errorMessage = "Invalid Email entered.";
+            modelAndView.addObject("errorMessage", errorMessage);
+        }
+        return modelAndView;
+    }
+
+    @PostMapping("/addStudentToCourse")
+    public ModelAndView addStudentToCourse(Model model, @ModelAttribute("person") Person person,
+                                           HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        Courses courses = (Courses) session.getAttribute("courses");
+        Person personEntity = personRepository.readByEmail(person.getEmail());
+        if(personEntity==null || !(personEntity.getPersonId() > 0)){
+            modelAndView.setViewName("redirect:/admin/viewStudents?id="+courses.getCourseId()
+                                        +"&error=true");
+            return modelAndView;
+        }
+        personEntity.getCourses().add(courses);
+        courses.getPersons().add(personEntity);
+        personRepository.save(personEntity);
+        session.setAttribute("courses", courses);
+        modelAndView.setViewName("redirect:/admin/viewStudents?id="+courses.getCourseId());
+        return modelAndView;
+    }
+
+    @GetMapping("/deleteStudentFromCourse")
+    public ModelAndView deleteStudentFromCourse(Model model, @RequestParam int personId,
+                                                HttpSession session){
+        //get current course from session
+        Courses courses = (Courses) session.getAttribute("courses");
+        //fetch person details from DB using personId
+        Optional<Person> person = personRepository.findById(personId);
+        //remove the courses from the person >> remove ManyToMany link
+        person.get().getCourses().remove(courses);
+        //remove people from course >> remove ManyToMany link
+        courses.getPersons().remove(person);
+        //save to database
+        personRepository.save(person.get());
+        session.setAttribute("courses", courses);
+        ModelAndView modelAndView = new
+                ModelAndView("redirect:/admin/viewStudents?id="+courses.getCourseId());
+        return modelAndView;
+
     }
 }

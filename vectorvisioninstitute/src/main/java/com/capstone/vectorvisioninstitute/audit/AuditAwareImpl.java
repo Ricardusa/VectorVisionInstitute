@@ -21,4 +21,17 @@ public class AuditAwareImpl implements AuditorAware<String> {
         //with this operation our application will now know who is which user
         return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication().getName());
     }
+
+    /*@Override
+    public Optional<String> getCurrentAuditor() {
+        return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+                .map(authentication -> {
+                    if (authentication.getName() != null) {
+                        return authentication.getName();
+                    } else {
+                        // Handle the case when the authentication has no name
+                        return "anonymousUser";
+                    }
+                });
+    }*/
 }

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMIN - CLASSES</title>
+    <title>ADMIN - COURSES</title>
     <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Your custom CSS file -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <!-- Bootstrap JS (optional, add if needed) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -26,59 +27,70 @@
 <div th:replace="~{header :: header}"></div>
 
 <div class="site-section">
-    <div class="container">
+   <div class="container">
+
+
         <div class="row mb-4">
             <div class="col-md-12">
-                <h3 class="mb-4">Vector Vision Class Details</h3>
-                <button class="btn btn-info" type="button" data-toggle="modal" data-target="#createClass">ADD CLASS</button>
+                <h3 class="mt-4 mb-4">Vector Vision Course Details</h3>
+                <button class="btn btn-info" type="button"
+                        data-toggle="modal" data-target="#addCourse">ADD COURSE</button>
             </div>
         </div>
 
-        <div class="modal fade" id="createClass" tabindex="-1" role="dialog" aria-labelledby="createClassModalLabel" aria-hidden="true">
+        <!-- Modal for adding a new course -->
+        <div class="modal fade" id="addCourse" tabindex="-1" role="dialog"
+             aria-labelledby="addCourseModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header border-0">
-                        <h5 class="modal-title" id="createClassLabel">Create New Class</h5>
+                    <div class="modal-header border-bottom-0">
+                        <h5 class="modal-title" id="addCourseLabel">Add New Course</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form th:action="@{/admin/addNewClass}" method="post" class="signin-form" th:object="${classDetails}">
+                    <form th:action="@{/admin/addNewCourse}" method="post" class="signin-form" th:object="${course}">
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="className">Class Name</label>
-                                <input type="text" class="form-control" name="className" id="className" th:field="*{name}" required placeholder="Enter class name">
+                            <div class="input-grids">
+                                <label class="control-label" for="courseName">Course Name</label>
+                                <input type="text" class="form-control" name="courseName" id="courseName"
+                                       th:field="*{name}" required placeholder="Enter Course Name">
+                                <label class="control-label" for="fees">Fees</label>
+                                <input type="text" class="form-control" name="fees" id="fees" th:field="*{fees}"
+                                       required placeholder="Enter fees">
                             </div>
                         </div>
-                        <div class="modal-footer border-0 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-style btn-info">Submit</button>
+                        <div class="modal-footer border-top-0 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-info">Submit</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-      <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <!-- Table displaying course details -->
+       <div class="table-responsive">
+         <table class="table table-striped table-hover">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Class ID</th>
-                <th scope="col">Class Name</th>
-                <th scope="col"></th>
+                <th scope="col">Course ID</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Fees</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="classDetails: ${cDetails}">
-                <td th:text="${classDetails.classId}"></td>
-                <td th:text="${classDetails.name}"></td>
-                <td><a th:href="@{/admin/displayStudents(classId=${classDetails.classId})}" class="btn btn-success">VIEW</a></td>
-                <td><a th:href="@{/admin/deleteClass(id=${classDetails.classId})}" class="btn btn-warning">DELETE</a></td>
+            <tr th:each="course: ${courses}">
+                <td th:text="${course.courseId}"></td>
+                <td th:text="${course.name}"></td>
+                <td th:text="${course.fees}"></td>
+                <td><a th:href="@{/admin/viewStudents(id=${course.courseId})}" class="btn btn-warning">VIEW STUDENTS</a></td>
             </tr>
             </tbody>
         </table>
-    </div>
+       </div>
 
+    <!-- BACK button -->
     <div class="col-md-2 mb-3 mt-3">
         <a th:href="@{/dashboard}">
             <button class="btn btn-info">BACK</button>
@@ -89,5 +101,6 @@
 
 <!-- FOOTER SECTION -->
 <div th:replace="~{footer :: footer}"></div>
+
 </body>
 </html>
