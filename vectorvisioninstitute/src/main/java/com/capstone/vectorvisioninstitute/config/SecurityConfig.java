@@ -51,6 +51,8 @@ public class SecurityConfig {
                         /* PUBLIC */
                         .requestMatchers(
                                 "/public/**",
+                                //"", these are treated similarly "/"
+                                "/",
                                 "/home",
                                 "/holidays/**",
                                 "/contact",
@@ -76,7 +78,7 @@ public class SecurityConfig {
 
                         /* IS ADMIN */
                         .requestMatchers(
-                                "/displayMessages",
+                                "/displayMessages/**", //changed -> /**
                                 "/admin/**",
                                 "/closeMsg/**")
                         .hasRole("ADMIN"))
@@ -92,7 +94,8 @@ public class SecurityConfig {
                 .csrf((csrf) -> csrf
                         .ignoringRequestMatchers(
                                 "/public/**",
-                                "/saveMsg"));
+                                "/saveMsg"))
+                .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

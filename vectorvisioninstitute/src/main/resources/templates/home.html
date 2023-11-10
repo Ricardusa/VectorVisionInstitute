@@ -27,39 +27,47 @@
 <div th:replace="~{header :: header}"></div>
 
 
-<!-- BANNER -->
+<!-- BANNER-->
 <section class="banner">
   <div class="banner-text">
-    <h1 class="custom-font">Vector Vision Institute</h1>
-    <p>Your path to a brighter future starts here.</p>
-  </div>
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3); border-radius: 7px;">
+    <h1 class="custom-font display-3 font-weight-bold text-left">Vector Vision Institute</h1>
+    <p class="text-left font-weight-bold">Your path to a brighter future starts here.</p>
+    </div>
+   </div>
   <img src="/assets/img/banr1.png" alt="Banner Image" class="banner-image">
+
 </section>
 
 <!-- COURSES SECTION -->
-<section id="courses" class="text-center" style="margin-bottom: 40px;">
+<section id="courses" class="text-center mb-2">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h2 class="custom-font">Empowering Education for ALL</h2>
-        <p>Explore courses designed to empower individuals of all ages and backgrounds, fostering a supportive learning community at Vector Vision Institute.</p>
+        <h2 class="custom-font display-7 font-weight-bold mb-3">Empowering Education for ALL</h2>
+        <p class="text-center">Explore courses designed to empower individuals of all ages and backgrounds, fostering a supportive learning community at Vector Vision Institute.</p>
         <a th:href="@{/courses}" class="btn btn-primary mb-4 btn-primary-custom">View All Courses</a>
       </div>
       <div class="col-md-6">
-        <img src="/assets/img/coursesImg.png" alt="Courses Image"   class="card-img-top img-fluid rounded-image">
+        <img src="/assets/img/coursesImg.png" alt="Courses Image"   class="card-img-top img-fluid rounded shadow-sm">
       </div>
     </div>
   </div>
 </section>
 
+<!-- separator -->
+<div class="col-8 col-md-8 col-lg-6 mx-auto text-center py-4 border-bottom mb-4">
+</div>
+<!-- //separator-->
+
 <!-- WHY CHOOSE US SECTION -->
-<section id="why-choose-us" class="text-center" style="margin-bottom: 20px; position: relative;">
+<section id="why-choose-us" class="text-center mt-3" style="margin-bottom: 20px; position: relative;">
   <div class="container">
-    <h2 class="custom-font">Why Choose Us</h2>
+    <h2 class="custom-font display-7 font-weight-bold mb-3">Why Choose Us</h2>
     <div class="row">
       <div class="col-md-6 mb-4">
         <div class="choose-us-item position-relative">
-          <img src="/assets/img/teachImage.png" alt="Expert Teachers" class="img-fluid rounded-image blur-image">
+          <img src="/assets/img/teachImage.png" alt="Expert Teachers" class="img-fluid rounded shadow-sm blur-image">
           <div class="choose-us-text position-absolute top-50 start-50 translate-middle text-light">
             <h3>Expert Teachers</h3>
             <p>We have a team of dedicated and experienced teachers who are experts in their fields. Our commitment is to provide high-quality education and guidance to our students.</p>
@@ -68,7 +76,7 @@
       </div>
       <div class="col-md-6 mb-4">
         <div class="choose-us-item position-relative">
-          <img src="/assets/img/safeEnvironment.png" alt="Safe Environment" class="img-fluid rounded-image blur-image">
+          <img src="/assets/img/safeEnvironment.png" alt="Safe Environment" class="img-fluid rounded shadow-sm blur-image">
           <div class="choose-us-text position-absolute top-50 start-50 translate-middle text-light">
             <h3>Safe Environment</h3>
             <p>Ensuring the safety and well-being of our students is our top priority. Our school provides a secure and nurturing environment where students can focus on learning and personal growth.</p>
@@ -80,19 +88,24 @@
   </div>
 </section>
 
+<!-- separator -->
+<div class="col-8 col-md-8 col-lg-6 mx-auto text-center py-4 border-bottom mb-3">
+</div>
+<!-- //separator-->
+
 <!-- APPLY NOW SECTION -->
 <section id="apply-now" class="text-center my-5">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <img src="/assets/img/applyNow.png" alt="Apply Now" class="img-fluid rounded-image mb-3">
+        <img src="/assets/img/applyNow.png" alt="Apply Now" class="img-fluid rounded shadow-sm mb-3">
       </div>
       <div class="col-md-6">
         <div class="apply-now-box">
-          <h2 class="custom-font">Get an Appointment Today</h2>
+          <h2 class="custom-font display-7 font-weight-bold mb-3">Get an Appointment Today</h2>
           <p>Call us now to schedule your appointment!</p>
           <div class="contact-info">
-            <span><i class="fas fa-phone"></i> +1(23) 456 789 0000</span>
+            <span> +1(23) 456 789 0000</span>
           </div>
           <a th:href="@{/contact}" class="btn btn-primary btn-primary-custom mt-3">Apply Now</a>
         </div>
@@ -101,8 +114,42 @@
   </div>
 </section>
 
+
 <!-- FOOTER SECTION -->
 <div th:replace="~{footer :: footer}"></div>
+
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top" class="btn btn-scroll-custom" style="position: fixed; bottom: 10px; right: 10px; display: none;">
+  🡹
+</button>
+<script>
+  // When the user scrolls, check the scroll position to determine whether to show or hide the button
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    // Get the move top button element
+    var moveTopButton = document.getElementById("movetop");
+
+    // If the user has scrolled down at least 20 pixels, show the button; otherwise, hide it
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      moveTopButton.style.display = "block";
+    } else {
+      moveTopButton.style.display = "none";
+    }
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+<!-- //move top -->
+
+
+
 </body>
 
 

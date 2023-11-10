@@ -3,26 +3,14 @@ package com.capstone.vectorvisioninstitute.repository;
 import com.capstone.vectorvisioninstitute.constants.VectorVisionConstants;
 import com.capstone.vectorvisioninstitute.model.Person;
 import com.capstone.vectorvisioninstitute.model.Roles;
-import com.capstone.vectorvisioninstitute.service.PersonService;
 import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,15 +27,16 @@ class PersonRepositoryTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    //test save person and find person by ID
     @Test
     @Transactional
     @Rollback
     public void testSaveStudentPerson() {
         // Create a sample Person object
         Person person = new Person();
-        person.setName("John Doe");
+        person.setName("Jim Doe");
         person.setMobileNumber("1234567890");
-        person.setEmail("john.doe@example.com");
+        person.setEmail("jim.doe@example.com");
         person.setPwd(passwordEncoder.encode("password12345"));
         person.setConfirmPwd(passwordEncoder.encode("password12345"));
 
@@ -58,8 +47,6 @@ class PersonRepositoryTest {
         if (studentRole != null) {
             person.setRoles(studentRole); // Set student role
         } else {
-            // Handle the case where the student role is not found
-            // You might want to log an error or throw an exception
             return;
         }
 
@@ -74,8 +61,7 @@ class PersonRepositoryTest {
         Person retrievedPerson = personRepository.findById(savedPerson.getPersonId()).orElse(null);
 
         // Assert that the retrieved person is not null and has the same name
-        assertEquals("John Doe", retrievedPerson.getName());
-        // Add more specific assertions if needed
+        assertEquals("Jim Doe", retrievedPerson.getName());
     }
 
 }

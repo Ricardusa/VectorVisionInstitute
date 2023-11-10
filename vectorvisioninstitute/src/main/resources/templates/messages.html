@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMIN - CONTACT MESSAGES</title>
+    <title>Admin - Contact Messages</title>
     <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Your custom CSS file -->
@@ -27,7 +27,7 @@
 <!-- HEADER SECTION -->
 <div th:replace="~{header :: header}"></div>
 
-<!-- MESSAGES SECTION -->
+<!-- MESSAGES SECTION
 <div class="container py-5">
     <div class="row mb-4">
         <div class="col-md-7">
@@ -64,10 +64,123 @@
         </a>
     </div>
 </div>
-<!-- //MESSAGES SECTION -->
+//MESSAGES SECTION -->
+
+<!-- MESSAGES SECTION -->
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-7">
+                <h3 class="custom-font mt-3">Open Contact Messages</h3>
+            </div>
+        </div>
+        <div class="table-responsive-md">
+            <table class="table table-striped dataTable">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                        <a th:href="@{'/displayMessages/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir} }">Name</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/displayMessages/page/' + ${currentPage} + '?sortField=mobileNum&sortDir=' + ${reverseSortDir} }">Mobile Num</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/displayMessages/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir} }">Email</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/displayMessages/page/' + ${currentPage} + '?sortField=subject&sortDir=' + ${reverseSortDir} }">Subject</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/displayMessages/page/' + ${currentPage} + '?sortField=message&sortDir=' + ${reverseSortDir} }">Message</a>
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="msg: ${contactMsgs}">
+                    <td th:text="${msg.name}"></td>
+                    <td th:text="${msg.mobileNum}"></td>
+                    <td th:text="${msg.email}"></td>
+                    <td th:text="${msg.subject}"></td>
+                    <td th:text="${msg.message}"></td>
+                    <td><a th:href="@{/closeMsg(id=${msg.contactId})}" class="btn btn-warning">CLOSE</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- pagination -->
+        <div class="pagination-style text-center mt-5">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a th:if="${currentPage > 1}" class="page-link" th:href="@{'/displayMessages/page/' + ${currentPage - 1}+'?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} }">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    <a th:unless="${currentPage > 1}" class="page-link disabled" tabindex="-1" aria-disabled="true">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                    <li class="page-item">
+                        <a th:if="${currentPage != i}" class="page-link" th:href="@{'/displayMessages/page/' + ${i}+'?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} }">[[${i}]]</a>
+                        <span th:unless="${currentPage != i}" class="page-link active">[[${i}]]</span>
+                    </li>
+                </span>
+                <li class="page-item">
+                    <a th:if="${currentPage < totalPages}" class="page-link" th:href="@{'/displayMessages/page/' + ${currentPage + 1}+'?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} }">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    <a th:unless="${currentPage < totalPages}" class="page-link disabled" tabindex="-1" aria-disabled="true">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- //pagination -->
+        <div class="row">
+            <div class="col-md-2 mb-3 mt-3">
+                <a th:href="@{/dashboard}">
+                    <button class="btn btn-info">BACK</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //MESSAGES -->
+
 
 <!-- FOOTER SECTION -->
 <div th:replace="~{footer :: footer}"></div>
+
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top" class="btn btn-scroll-custom" style="position: fixed; bottom: 10px; right: 10px; display: none;">
+    🡹
+</button>
+<script>
+    // When the user scrolls, check the scroll position to determine whether to show or hide the button
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        // Get the move top button element
+        var moveTopButton = document.getElementById("movetop");
+
+        // If the user has scrolled down at least 20 pixels, show the button; otherwise, hide it
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            moveTopButton.style.display = "block";
+        } else {
+            moveTopButton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- //move top -->
+
 </body>
 
 </html>

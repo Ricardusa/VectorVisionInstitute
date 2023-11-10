@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VVI - Registration Form</title>
+    <title>Registration Form</title>
     <!-- Bootstrap CSS (you can replace it with your own CSS or link to Bootstrap CDN) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Your custom CSS file -->
@@ -20,6 +20,14 @@
     <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <style>
+        body {
+            background-image: url('/assets/img/registerBackground.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,17 +38,18 @@
 <section class="w3l-contact py-5" id="contact">
     <div class="container py-md-5 py-4">
         <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
-            <h3 class="title-style">Registration Form</h3>
+            <h3 class="title-style custom-font display-5 font-weight-bold">Registration Form</h3>
         </div>
-        <div class="row login-block">
+        <div class="row justify-content-center">
             <div class="col-md-7 login-center">
                 <ul>
+                    <!--Error Message-->
                     <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('person.*')}" th:text="${error}" />
                 </ul>
                 <!-- Form th:action="@{/public/createUser}"-->
                 <form th:action="@{/public/createUser}" method="post" class="signin-form" th:object="${person}">
                     <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
-                        <p class="text-uppercase">Personal Details</p>
+                        <p class="text-uppercase custom-font display-7 font-weight-bold">Personal Details</p>
                     </div>
                     <div class="input-grids">
                         <div class="row">
@@ -69,7 +78,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 login-center text-start">
-                        <button type="submit" class="btn btn-primary btn-style-3">Register</button>
+                        <button type="submit" class="btn-primary-custom mt-2">Register</button>
                     </div>
                 </form>
             </div>
@@ -79,5 +88,36 @@
 
 <!-- FOOTER SECTION -->
 <div th:replace="~{footer :: footer}"></div>
+
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top" class="btn btn-scroll-custom" style="position: fixed; bottom: 10px; right: 10px; display: none;">
+    🡹
+</button>
+<script>
+    // When the user scrolls, check the scroll position to determine whether to show or hide the button
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        // Get the move top button element
+        var moveTopButton = document.getElementById("movetop");
+
+        // If the user has scrolled down at least 20 pixels, show the button; otherwise, hide it
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            moveTopButton.style.display = "block";
+        } else {
+            moveTopButton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- //move top -->
+
 </body>
 </html>

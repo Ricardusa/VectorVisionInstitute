@@ -29,13 +29,13 @@
 <!-- COURSES SECTION -->
 <section id="courses" class="text-center">
     <div class="container">
-        <h2 class="custom-font">All Courses</h2>
+        <h2 class="custom-font display-5 font-weight-bold mb-4">All Courses</h2>
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <img src="/assets/img/javaCourse.png" class="card-img-top" alt="Course 1">
                     <div class="card-body">
-                        <h5 class="card-title">Full Stack Developer</h5>
+                        <h5 class="card-title display-8 font-weight-bold">Full Stack Developer</h5>
                         <p class="card-text">Master both front-end and back-end technologies to become a versatile problem-solver in our Full Stack Developer course.</p>
                         <!-- Add more details about the course or a "Enroll Now" button if needed -->
                     </div>
@@ -46,7 +46,7 @@
                 <div class="card">
                     <img src="/assets/img/cyberCourse.png" class="card-img-top" alt="Course 2">
                     <div class="card-body">
-                        <h5 class="card-title">CyberSecurity</h5>
+                        <h5 class="card-title display-8 font-weight-bold">CyberSecurity</h5>
                         <p class="card-text">Learn essential cybersecurity skills. Defend against threats, conduct security assessments, and master ethical hacking. Become a cybersecurity expert.</p>
                         <!-- Add more details about the course or a "Enroll Now" button if needed -->
                     </div>
@@ -57,7 +57,7 @@
                 <div class="card">
                     <img src="/assets/img/dataScience.png" class="card-img-top" alt="Course 2">
                     <div class="card-body">
-                        <h5 class="card-title">Data Science & Analytics</h5>
+                        <h5 class="card-title display-8 font-weight-bold">Data Science & Analytics</h5>
                         <p class="card-text">Unlock the power of data analytics and machine learning in our Data Science program.</p>
                         <!-- Add more details about the course or a "Enroll Now" button if needed -->
                     </div>
@@ -68,8 +68,30 @@
                 <div class="card">
                     <img src="/assets/img/gameDevelopment.png" class="card-img-top" alt="Course 2">
                     <div class="card-body">
-                        <h5 class="card-title">Game Development</h5>
+                        <h5 class="card-title display-8 font-weight-bold">Game Development</h5>
                         <p class="card-text">Create immersive worlds and interactive experiences in our Game Development program.</p>
+                        <!-- Add more details about the course or a "Enroll Now" button if needed -->
+                    </div>
+                </div>
+            </div>
+            <!-- Course 5 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/assets/img/aritificialintelligence.png" class="card-img-top" alt="Course 2">
+                    <div class="card-body">
+                        <h5 class="card-title display-8 font-weight-bold">Artificial Intelligence</h5>
+                        <p class="card-text">Artificial Intelligence, or AI, is a rapidly changing computer science field with a wide range of applications, like automation, data analysis, and more. It focuses on creating machines that can perform tasks typically requiring human intelligence.</p>
+                        <!-- Add more details about the course or a "Enroll Now" button if needed -->
+                    </div>
+                </div>
+            </div>
+            <!-- Course 6 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/assets/img/uxDesign.png" class="card-img-top" alt="Course 2">
+                    <div class="card-body">
+                        <h5 class="card-title display-8 font-weight-bold">Design</h5>
+                        <p class="card-text">In the broadest sense, design refers to visuals, interaction flows, wireframes, branding, and more. You'll need good design to enhance your websites, mobile apps, and businesses.</p>
                         <!-- Add more details about the course or a "Enroll Now" button if needed -->
                     </div>
                 </div>
@@ -81,5 +103,36 @@
 
 <!-- FOOTER SECTION -->
 <div th:replace="~{footer :: footer}"></div>
+
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top" class="btn btn-scroll-custom" style="position: fixed; bottom: 10px; right: 10px; display: none;">
+    🡹
+</button>
+<script>
+    // When the user scrolls, check the scroll position to determine whether to show or hide the button
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        // Get the move top button element
+        var moveTopButton = document.getElementById("movetop");
+
+        // If the user has scrolled down at least 20 pixels, show the button; otherwise, hide it
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            moveTopButton.style.display = "block";
+        } else {
+            moveTopButton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- //move top -->
+
 </body>
 </html>

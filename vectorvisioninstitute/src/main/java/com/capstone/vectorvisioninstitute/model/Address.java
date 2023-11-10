@@ -20,7 +20,7 @@ public class Address extends BaseEntity{
     private int addressId;
 
     @NotBlank(message = "Address 1 must not be blank")
-    @Size(min = 5, message = "Adder")
+    @Size(min = 5, message = "Address must be at least 5 characters long")
     private String address1;
 
     private String address2;
