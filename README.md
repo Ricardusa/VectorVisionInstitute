@@ -70,6 +70,16 @@ The application incorporates robust security features to protect user data and e
 
 ## Running the App
 
+1. Clone the repository: git clone https://github.com/Ricardusa/VectorVisionInstitute.git
+2. Open IntelliJ IDEA.
+3. Choose "File" > "Open"
+4. Navigate to your project directory and select it.
+5. Update the values in application.properties with your MySQL database connection details
+6. Run the MySQL scripts using one of the following methods:
+- **Open your MySQL client (e.g., MySQL Workbench), paste the content of `custom-schema-sql`, and execute to create the database schema.**
+- **Open your MySQL client (e.g., MySQL Workbench), paste the content of `custom-data.sql`, and execute to populate the database with initial data.**
+- Alternatively, use the command line: `mysql -u your_username -p your_database < src/main/resources/custom-schema-sql` to create the database schema, and `mysql -u your_username -p your_database < src/main/resources/custom-data.sql` to populate it.
+
 ## ER-Diagram
 ![VectorVisionER](https://github.com/Ricardusa/VectorVisionInstitute/assets/49419585/d25ffc81-a9b1-498d-8050-10346724797d)
 
