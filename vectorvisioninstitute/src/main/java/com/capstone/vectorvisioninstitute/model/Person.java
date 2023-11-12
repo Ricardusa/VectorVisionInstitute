@@ -65,9 +65,12 @@ public class Person extends BaseEntity{
     @Transient //no database related operations like save
     private String confirmPwd;
 
-    /*since whenever we do an operation(other than Persist) to the person we don't
-    want that same operation to be done to the roles as well, since
-    we want to keep roles unchanged, CascadeType.PERSIST is used*/
+    /**
+     * When performing operations (other than Persist) on a Person, we want to avoid applying the same operation to roles.
+     * To keep roles unchanged, CascadeType.PERSIST is used.
+     *
+     * This means that when persisting a Person, the associated roles will not be affected by other operations.
+     */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, targetEntity = Roles.class)
     @JoinColumn(name ="role_id", referencedColumnName = "roleId", nullable = false)
     private Roles roles;
@@ -77,32 +80,6 @@ public class Person extends BaseEntity{
      *      One person can only have one address and vise versa.
      *      And since the foreign key relationship between the person
      *      and the Address tables is an optional, or it is a nullable = true
-     */
-    /* @OneToOne
-     * EAGER = when we fetch the person record tables, spring data JPA will
-     *   automatically fetch the child table records.
-     * LAZY = when we fetch the person record tables, spring data JPA will
-     *   not fetch the child table records automatically. it will only load the person related records.
-     * CascadeType.ALL = if we are doing Insert, Update or Delete operations on the parent
-     *   the same operations we want spring data JPA to do to the child entity class.
-     * 1. First we must establish a FetchType so do we want to fetch the child
-     *    entities either eagerly or lazily
-     * 2. Next alongside with our fetch configurations we must also make cascade
-     *    configurations.
-     * 3. Alongside with our CascadeType configurations we mention the optional
-     *    targetEntity which indirectly tells to spring data JPA that the targetEntity
-     *    is of Address table (done for readability purposes).
-     *
-     * @JoinColumn
-     * Without JoinColumn annotation our Spring Data JPA would be clueless to which
-     *   column of person entity has a 1to1 relationship with which column Address entity.
-     * 1. First we need to tell what is the column name that is present
-     *    inside the person table which is address_id.
-     * 2. Using referencedColumnName we have to communicate to spring data JPA which field
-     *    inside the Address entity pojo class that this address_id column is present inside
-     *    Person has a link to or a 1to1 relationship with that name is addressId.
-     * 3. Last we mention whether this relationship is nullable or not, And since
-     *    the Person and Address relationship that we have right now inside the tables is nullable.
      */
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Address.class)
     @JoinColumn(name ="address_id", referencedColumnName = "addressId", nullable = true)
@@ -125,17 +102,17 @@ public class Person extends BaseEntity{
 
 
     /**
-     * Set<Courses> courses = new HashSet<>() >> courses field is also of type collection since a person can enroll
-     * into multiple courses.
-     * @JoinTable >> we use jointable since we are going to have an intermediate table inside our ManyToMany relationship,
-     * we need to tell the details of the intermediate table to my spring JPA framework with the help of the @JoinTable annotation.
-     * First we need to tell what is the name of the intermediate table name, which is person_courses.
-     * joinColumns >> we need to configure two configurations first we have joinColumns which we are going to configure
-     * that the columns belong to this entity which Person. so what is the column name in the DataBase which is
-     * "person_id" and for the referenceColumnName we have to make sure we match the field name with the field name
-     * that we have in the Person Entity class which is "personId".
-     * inverseJoinColumns >> here we need to provide the details about the other entity class which is Courses.
-     * we do the same name = "course_id", referencedColumnName = "courseId".
+     * The 'courses' field is a Set of Courses, representing a collection since a person can enroll in multiple courses.
+     * For the ManyToMany relationship, we use a @JoinTable annotation to specify details about the intermediate table.
+     * In this case, the intermediate table is named 'person_courses'.
+     *
+     * - joinColumns: Configures columns belonging to this entity (Person).
+     *   - name: The column name in the database, which is "person_id".
+     *   - referencedColumnName: Matches the field name in the Person Entity class, which is "personId".
+     *
+     * - inverseJoinColumns: Configures details about the other entity class (Courses).
+     *   - name: The column name in the database, which is "course_id".
+     *   - referencedColumnName: Matches the field name in the Courses Entity class, which is "courseId".
      */
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "person_courses", // spring is smart enough to make this personCourses entity class itself which belong to the person_courses

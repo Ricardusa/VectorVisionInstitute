@@ -25,7 +25,7 @@ public class DashboardController {
         Person person = personRepository.readByEmail(authentication.getName());
         model.addAttribute("username", person.getName());
         model.addAttribute("roles", authentication.getAuthorities().toString());
-        //check if their are any classes assigned to this person
+        //check if there are any classes assigned to this person
         //by checking the getClassDetails(), if it not null.
         //next check if the class name present inside the class details is not null
         if(null != person.getClassDetails() && null != person.getClassDetails().getName()){

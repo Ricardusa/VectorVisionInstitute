@@ -3,7 +3,7 @@
 
 /* CSS */
 body {
-    background-color: #f5f5f5; /* Light Blue */
+    background-color: #f5f5f5;
     min-height: 100vh; /* Ensure at least viewport height */
     display: flex;
     flex-direction: column;
@@ -44,13 +44,13 @@ footer {
 
 .banner-text h1 {
     font-size: 4em; /* Adjust the font size as needed */
-    font-weight: bold; /* Make the text bold */
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
 .banner-text p {
     font-size: 2.5em; /* Adjust the font size as needed */
-    font-weight: bold; /* Make the text bold */
+    font-weight: bold;
     margin: 0;
 }
 
@@ -71,7 +71,7 @@ footer {
 
 .rounded-image {
     border-radius: 15px; /* Adjust the border-radius as needed */
-    overflow: hidden; /* Ensure the corners are rounded */
+    overflow: hidden;
 }
 
 /*Choose-Us section*/
@@ -88,7 +88,7 @@ footer {
     text-align: center;
     color: #fff; /* Adjust the color as needed */
     padding: 20px; /* Adjust the padding as needed */
-    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+    background: rgba(0, 0, 0, 0.7);
 }
 
 /* Responsive styles for smaller screens */
@@ -119,9 +119,9 @@ footer {
 
 /*custom button*/
 .btn-primary-custom {
-    display: inline-flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     outline: 0;
     border: 0;
     cursor: pointer;
@@ -149,9 +149,9 @@ footer {
 
 /* custom button scroll up*/
 .btn-scroll-custom {
-    display: inline-flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     outline: 0;
     border: 0;
     cursor: pointer;
@@ -324,8 +324,8 @@ th > a:hover {
 
 /*Pagination custom colors*/
 .pagination .page-item .active {
-    background-color: #007bff; /* Change this to your desired color */
-    color: #fff; /* Change this to the text color you prefer */
+    background-color: #007bff;
+    color: #fff;
 }
 
 /*Contact Page Text*/

@@ -23,12 +23,13 @@ public class Courses extends BaseEntity{
     private String fees;
 
     /**
-     * Set<Person> persons >> these fields should be a collection object of set because multiple persons
-     * enroll to the same course, that is why we should always maintain this as a set of persons.
-     * fetch = FetchType.EAGER >> since when we want to fetch the courses we also fetch the persons associated
-     * with those courses
-     * cascade = CascadeType.PERSIST >> since if we delete a course we don't want to delete the persons
-     * associated with that course as entity.
+     * The 'persons' field represents a collection of Person objects. It is a Set because multiple persons
+     * can enroll in the same course, and maintaining this as a set ensures uniqueness.
+     *
+     * - fetch = FetchType.EAGER: When fetching courses, we also fetch the associated persons for immediate access.
+     *
+     * - cascade = CascadeType.PERSIST: If we delete a course, we don't want to delete the associated persons.
+     *   This cascade type is used to prevent unwanted deletions of persons when deleting a course entity.
      */
     @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Person> persons = new HashSet<>();

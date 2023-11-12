@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-//NOV 06 2023 - install sonarLint @38:00
+//Author: Ricardo Rivas
 
 @SpringBootApplication
 //Annotations used for enabling the JPA functionality.

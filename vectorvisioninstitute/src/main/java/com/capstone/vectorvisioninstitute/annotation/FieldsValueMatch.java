@@ -20,7 +20,7 @@ public @interface FieldsValueMatch {
     String message() default "Fields values don't match";
 
     /*
-    since our application will validate the content of
+    since application will validate the content of
     two fields we need to write the below annotation and code.
      */
     String field();

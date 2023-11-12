@@ -49,14 +49,6 @@ public class ContactController {
         return "redirect:/contact";
     }
 
-    /*@RequestMapping("/displayMessages")
-    public ModelAndView displayMessages(Model model){
-        List<Contact> contactMsgs = contactService.findMsgsWithOpenStatus();
-        ModelAndView modelAndView = new ModelAndView("messages.html");
-        modelAndView.addObject("contactMsgs", contactMsgs);
-        return modelAndView;
-    }*/
-
     //Pagination code
     @RequestMapping("/displayMessages/page/{pageNum}")
     public ModelAndView displayMessages(Model model,
@@ -79,12 +71,9 @@ public class ContactController {
     @RequestMapping(value = "/closeMsg", method = GET)
     public String closeMsg(@RequestParam int id){
         contactService.updateMsgStatus(id);
+        //redirect user to first page
         return "redirect:/displayMessages/page/1?sortField=name&sortDir=desc";
     }
 
-    /*@RequestMapping(value = "/closeMsg", method = GET)
-    public String closeMsg(@RequestParam int id){
-        contactService.updateMsgStatus(id);
-        return "redirect:/displayMessages";
-    }*/
+
 }

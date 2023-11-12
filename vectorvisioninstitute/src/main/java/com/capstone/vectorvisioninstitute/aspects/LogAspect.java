@@ -12,17 +12,22 @@ import java.time.Duration;
 import java.time.Instant;
 
 
-//logger statements whenever we invoke an operation on the backend.
-//this way we can see how much time each action takes to see if there are any performance issues
+/**
+ * Aspect class for logging method execution and performance metrics.
+ * Provides logger statements whenever an operation is invoked on the backend,
+ * allowing tracking of execution time to identify potential performance issues.
+ */
 @Slf4j
 @Aspect
 @Component
 public class LogAspect {
 
-    /*
-     *proceed() >> makes sure that actual business logic present inside my
-    actual method will get invoked.
-     *
+
+    /**
+     * Logs method execution start, measures execution time, and logs method execution end.
+     * @param joinPoint ProceedingJoinPoint representing the pointcut of the intercepted method.
+     * @return The object returned by the intercepted method.
+     * @throws Throwable Thrown if an exception occurs during method execution.
      */
     @Around("execution(* com.capstone.vectorvisioninstitute..*.*(..))")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable{
@@ -36,6 +41,11 @@ public class LogAspect {
         return returnObj;
     }
 
+    /**
+     * Logs exceptions thrown during method execution.
+     * @param joinPoint JoinPoint representing the pointcut of the intercepted method.
+     * @param ex       The exception thrown during method execution.
+     */
     @AfterThrowing(value = "execution(* com.capstone.vectorvisioninstitute.*.*(..))",throwing = "ex")
     public void logException(JoinPoint joinPoint, Exception ex) {
         log.error(joinPoint.getSignature()+ " An exception happened due to : "+ex.getMessage());

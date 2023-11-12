@@ -161,42 +161,22 @@ public class AdminController {
      */
     @GetMapping("/deleteStudent")
     public ModelAndView deleteStudent(Model model, @RequestParam int personId, HttpSession session){
-        // Retrieve the classDetails from the session attribute
         ClassDetails classDetails = (ClassDetails) session.getAttribute("classDetails");
-
-        // Retrieve the person with the specified personId from the database
         Optional<Person> person = personRepository.findById(personId);
-
-        // Break the relationship between the person and the class by setting classDetails to null
         person.get().setClassDetails(null);
-
-        // Remove the person from the list of associated persons in classDetails
         classDetails.getPersons().remove(person.get());
-
-        // Save the updated classDetails to the database
         ClassDetails classDetailsSaved = classDetailsRepository.save(classDetails);
-
-        // Set the latest classDetailsSaved object into the session attribute
         session.setAttribute("classDetails", classDetailsSaved);
-
-        // Redirect to the "admin/displayStudents" view with the current classId after successful deletion
         ModelAndView modelAndView = new ModelAndView("redirect:/admin/displayStudents?classId="+classDetails.getClassId());
         return modelAndView;
     }
 
     @GetMapping("/displayCourses")
     public ModelAndView displayCourses(Model model){
-        //List<Courses> courses = coursesRepository.findAll(Sort.by("name").descending());
-
         //if any existing courses, fetch courses inside DB by using the method findAll()
         List<Courses> courses = coursesRepository.findAll(); //findAll
-        //courses exist display new page courses_secure >> this page can only be explored by Admin
         ModelAndView modelAndView = new ModelAndView("courses_secure.html");
-        //send all courses fetched from the DB inside an object of "courses"
-        //this would allow us to display all the courses inside the application on the front end
         modelAndView.addObject("courses", courses);
-        //create new Courses object so that the entity can bring the courses information from
-        //the UI to the Backend Controller Layer.
         modelAndView.addObject("course", new Courses());
         return modelAndView;
     }
@@ -233,6 +213,16 @@ public class AdminController {
         return modelAndView;
     }
 
+    /**
+     * Handles the addition of a student to a course. Retrieves the course details from the session,
+     * validates the student by email, and associates them with the course if valid.
+     * Redirects to the viewStudents page with appropriate parameters based on the outcome.
+     *
+     * @param model          The model for the view.
+     * @param person         The Person object representing the student to be added.
+     * @param session        HttpSession to manage session attributes.
+     * @return ModelAndView object directing to the appropriate view based on the operation's success or failure.
+     */
     @PostMapping("/addStudentToCourse")
     public ModelAndView addStudentToCourse(Model model, @ModelAttribute("person") Person person,
                                            HttpSession session){

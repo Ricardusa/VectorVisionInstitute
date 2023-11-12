@@ -44,12 +44,6 @@ public class ContactService {
         return isSaved;
     }
 
-    /*public List<Contact> findMsgsWithOpenStatus(){
-        //spring data JPA will insert some implementation at runtime
-        List<Contact> contactMsgs = contactRepository.findByStatus(VectorVisionConstants.OPEN);
-        return contactMsgs;
-    }*/
-
     //Pagination Configurations
     public Page<Contact> findMsgsWithOpenStatus(int pageNum, String sortField, String sortDir){
         int pageSize = 5;

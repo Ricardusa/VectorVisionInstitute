@@ -13,6 +13,7 @@ public class PasswordStrengthValidator implements ConstraintValidator<PasswordVa
 
     @Override
     public void initialize(PasswordValidator passwordValidator){
+        //list of passwords that users cannot use
         weakPasswords = Arrays.asList("12345", "password", "qwerty");
 
     }

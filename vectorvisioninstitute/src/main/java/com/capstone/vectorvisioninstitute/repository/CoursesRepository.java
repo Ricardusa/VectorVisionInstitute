@@ -9,8 +9,5 @@ import java.util.List;
 @Repository
 public interface CoursesRepository extends JpaRepository<Courses, Integer> {
 
-    //static sorting using order by keyword
-    List<Courses> findByOrderByNameDesc();
 
-    List<Courses> findByOrderByName();
 }
