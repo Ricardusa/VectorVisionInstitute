@@ -69,3 +69,6 @@ The application incorporates robust security features to protect user data and e
 - Spring Aspects
 
 ## Running the App
+
+## ER-Diagram
+
