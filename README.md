@@ -81,7 +81,7 @@ The application incorporates robust security features to protect user data and e
   - Alternatively, use the command line: `mysql -u your_username -p your_database < src/main/resources/custom-schema-sql` to create the database schema, and `mysql -u your_username -p your_database < src/main/resources/custom-data.sql` to populate it.
 
 <details>
-  <summary><strong style="font-size: 18px;">IMPORTANT: For administrative access, use the following default credentials</strong></summary>
+  <summary style="font-size: 24px;"><strong style="color: red;">IMPORTANT:</strong> For administrative access, use the following default credentials</summary>
 
   - **Email:** admin@gmail.com
   - **Password:** admin
