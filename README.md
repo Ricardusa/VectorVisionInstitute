@@ -80,6 +80,11 @@ The application incorporates robust security features to protect user data and e
 - **Open your MySQL client (e.g., MySQL Workbench), paste the content of `custom-data.sql`, and execute to populate the database with initial data.**
 - Alternatively, use the command line: `mysql -u your_username -p your_database < src/main/resources/custom-schema-sql` to create the database schema, and `mysql -u your_username -p your_database < src/main/resources/custom-data.sql` to populate it.
 
+**Note:**
+For administrative access, use the following default credentials:
+- **Email:** admin@gmail.com
+- **Password:** admin
+
 ## ER-Diagram
 ![VectorVisionER](https://github.com/Ricardusa/VectorVisionInstitute/assets/49419585/d25ffc81-a9b1-498d-8050-10346724797d)
 
