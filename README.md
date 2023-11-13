@@ -86,5 +86,7 @@ The application incorporates robust security features to protect user data and e
   - **Password:** admin
 
 ## ER-Diagram
-![VectorVisionER](https://github.com/Ricardusa/VectorVisionInstitute/assets/49419585/d25ffc81-a9b1-498d-8050-10346724797d)
+
+![VectorVisionER](https://github.com/Ricardusa/VectorVisionInstitute/assets/49419585/d4944662-9650-4fd6-b5c7-b0df24587370)
+
 
