@@ -91,7 +91,5 @@ The application incorporates robust security features to protect user data and e
 
 ## DEMO
 
-
-https://github.com/Ricardusa/VectorVisionInstitute/assets/49419585/b550ae43-259f-4d26-bd68-faa68fc355d6
-
+https://github.com/Ricardusa/VectorVisionInstitute/assets/49419585/2399b479-9772-4426-a581-9b6f9a1c8157
 
