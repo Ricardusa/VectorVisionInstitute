@@ -70,8 +70,7 @@ The application incorporates robust security features to protect user data and e
 
 ## Running the App
 
-1. Clone the repository: ```bash
-   git clone https://github.com/Ricardusa/VectorVisionInstitute.git```
+1. Clone the repository: ```git clone https://github.com/Ricardusa/VectorVisionInstitute.git```
 2. Open IntelliJ IDEA.
 3. Choose "File" > "Open"
 4. Navigate to your project directory and select it.
