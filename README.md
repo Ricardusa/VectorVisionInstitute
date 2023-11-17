@@ -69,6 +69,7 @@ The application incorporates robust security features to protect user data and e
 - JavaScript
 - Lombok
 - MySQL Connector
+- Junit
 
 ## Running the App
 
