@@ -55,18 +55,20 @@ The application incorporates robust security features to protect user data and e
 - Spring Boot 3.1.5
 - Maven
 - MySQL
+- Hibernate
 - Spring Data JPA
+- Spring JDBC
 - Spring Security
-- Thymeleaf
-- HTML/CSS
+- Spring Validation
+- Spring Aspects
 - Spring Web
 - Spring DevTools
-- Lombok
-- Spring Validation
 - Thymeleaf Extras Spring Security 6
-- Spring JDBC
+- Thymeleaf
+- HTML/CSS
+- JavaScript
+- Lombok
 - MySQL Connector
-- Spring Aspects
 
 ## Running the App
 
