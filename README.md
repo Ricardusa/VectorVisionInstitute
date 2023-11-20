@@ -3,6 +3,10 @@
 Vector Vision Institute is an Online Learning Management System (LMS) built using Java and Spring Boot. It serves as a comprehensive platform for individuals interested in technology courses. 
 The application provides a seamless experience for course registration, class management, user profiles, and effective communication between users and administrators.
 
+## DEMO
+
+https://github.com/Ricardusa/VectorVisionInstitute/assets/49419585/2399b479-9772-4426-a581-9b6f9a1c8157
+
 ## Features
 
 ### User:
@@ -92,7 +96,4 @@ The application incorporates robust security features to protect user data and e
 
 ![VectorVisionER](https://github.com/Ricardusa/VectorVisionInstitute/assets/49419585/d4944662-9650-4fd6-b5c7-b0df24587370)
 
-## DEMO
-
-https://github.com/Ricardusa/VectorVisionInstitute/assets/49419585/2399b479-9772-4426-a581-9b6f9a1c8157
 
